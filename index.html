@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bookish Inside</title>
   <meta name="description" content="Quick, engaging book summaries, reviews, and recommendations across genres." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0b1020;
@@ -26,7 +27,7 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
       background:
         radial-gradient(circle at top left, rgba(139,92,246,0.25), transparent 28%),
         radial-gradient(circle at top right, rgba(34,197,94,0.18), transparent 22%),
@@ -65,8 +66,10 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      font-family: 'Playfair Display', serif;
       font-weight: 800;
       letter-spacing: 0.2px;
+      font-size: 1.15rem;
     }
 
     .brand-badge {
@@ -101,16 +104,33 @@
     .nav-links a:hover,
     .nav-links button:hover { color: var(--text); }
 
-    .hero {
-      padding: 72px 0 36px;
+    .nav-random-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #4f46e5) !important;
+      color: white !important;
+      border: none !important;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
     }
+
+    .nav-random-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .hero { padding: 72px 0 36px; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1fr;
       gap: 28px;
       align-items: center;
     }
+
+    .hero-content { max-width: 900px; }
 
     .eyebrow {
       display: inline-flex;
@@ -126,6 +146,7 @@
     }
 
     .hero h1 {
+      font-family: 'Playfair Display', serif;
       font-size: clamp(2.4rem, 6vw, 4.4rem);
       line-height: 1.05;
       margin: 0 0 18px;
@@ -154,6 +175,7 @@
       font-weight: 700;
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.2s ease;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .btn:hover { transform: translateY(-2px); }
@@ -170,43 +192,18 @@
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: var(--shadow);
+    .btn-random {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: white;
+      box-shadow: 0 10px 30px rgba(239,68,68,0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .hero-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 18px;
-    }
+    .dice-icon { font-size: 1.1rem; }
 
-    .stat {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 18px;
-      border-radius: 20px;
-    }
-
-    .stat h3 {
-      margin: 0 0 6px;
-      font-size: 1.55rem;
-    }
-
-    .stat p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.5;
-    }
-
-    .section {
-      padding: 38px 0;
-    }
+    .section { padding: 38px 0; }
 
     .section-head {
       display: flex;
@@ -219,6 +216,7 @@
 
     .section-head h2 {
       margin: 0;
+      font-family: 'Playfair Display', serif;
       font-size: clamp(1.7rem, 4vw, 2.5rem);
       letter-spacing: -0.5px;
     }
@@ -245,8 +243,11 @@
       padding: 14px 16px;
       color: var(--text);
       font-size: 0.98rem;
+      font-family: 'DM Sans', sans-serif;
       width: 100%;
     }
+
+    .filter-box option { background: #121935; }
 
     .chips {
       display: flex;
@@ -263,6 +264,7 @@
       color: #dce3ff;
       cursor: pointer;
       font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
       transition: 0.2s ease;
       user-select: none;
     }
@@ -349,6 +351,7 @@
       font-size: 1.2rem;
       line-height: 1.4;
       letter-spacing: -0.2px;
+      font-family: 'Playfair Display', serif;
     }
 
     .excerpt {
@@ -393,12 +396,12 @@
       border: 1px solid rgba(255,255,255,0.1);
       color: var(--text);
       font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
       cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .read-btn:hover {
-      background: rgba(255,255,255,0.14);
-    }
+    .read-btn:hover { background: rgba(255,255,255,0.14); }
 
     .feature-strip {
       display: grid;
@@ -414,16 +417,8 @@
       box-shadow: var(--shadow);
     }
 
-    .mini-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-    }
-
-    .mini-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    .mini-card h3 { margin: 0 0 10px; font-size: 1.1rem; }
+    .mini-card p { margin: 0; color: var(--muted); line-height: 1.7; }
 
     .empty-state {
       display: none;
@@ -435,6 +430,7 @@
       background: rgba(255,255,255,0.04);
     }
 
+    /* ── Detail View ── */
     .detail-view {
       position: fixed;
       inset: 0;
@@ -489,6 +485,14 @@
       background: rgba(10,15,33,0.86);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .icon-btn {
@@ -498,7 +502,49 @@
       border-radius: 14px;
       padding: 10px 14px;
       font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
       cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .icon-btn:hover { background: rgba(255,255,255,0.13); }
+
+    /* Audio button states */
+    .audio-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(139,92,246,0.4);
+      background: rgba(139,92,246,0.12);
+      color: #c4b5fd;
+      border-radius: 14px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .audio-btn:hover { background: rgba(139,92,246,0.22); border-color: rgba(139,92,246,0.6); }
+    .audio-btn.playing { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .audio-btn.playing:hover { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+
+    .audio-progress {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      margin: 0 24px 0;
+      overflow: hidden;
+    }
+
+    .audio-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #22c55e);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.5s linear;
     }
 
     .detail-content {
@@ -527,12 +573,10 @@
     .detail-main h2,
     .detail-side h3 {
       margin-top: 0;
+      font-family: 'Playfair Display', serif;
     }
 
-    .detail-side ul {
-      margin: 0;
-      padding-left: 18px;
-    }
+    .detail-side ul { margin: 0; padding-left: 18px; }
 
     .detail-badges {
       display: flex;
@@ -541,10 +585,31 @@
       margin: 16px 0 0;
     }
 
-    footer {
-      padding: 42px 0 70px;
-      color: var(--muted);
+    /* ── Random Read Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      z-index: 999;
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      pointer-events: none;
+      white-space: nowrap;
     }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    footer { padding: 42px 0 70px; color: var(--muted); }
 
     .footer-box {
       display: flex;
@@ -559,21 +624,16 @@
     }
 
     @media (max-width: 1024px) {
-      .hero-grid,
       .grid,
       .feature-strip,
       .toolbar,
-      .detail-content {
-        grid-template-columns: 1fr;
-      }
+      .detail-content { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 680px) {
       .nav-wrap { align-items: flex-start; }
       .nav-links { display: none; }
       .hero { padding-top: 46px; }
-      .hero-card { padding: 20px; }
-      .hero-stat-grid { grid-template-columns: 1fr; }
       .card-cover { height: 200px; }
       .section { padding: 28px 0; }
       .detail-hero,
@@ -593,7 +653,7 @@
       <nav class="nav-links">
         <a href="#books">Browse</a>
         <a href="#features">Why Us</a>
-        <button id="navFeaturedBtn" type="button">Featured Review</button>
+        <button id="navRandomBtn" class="nav-random-btn" type="button">🎲 Random Read</button>
       </nav>
     </div>
   </header>
@@ -601,38 +661,13 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
+        <div class="hero-content">
           <div class="eyebrow">⚡ Quick reads for busy readers</div>
           <h1>Discover books faster with crisp summaries, smart filters, and premium in-site reading pages.</h1>
-          <p>
-            Bookish Inside now keeps the same clean UI even after clicking a book. Instead of sending visitors away, every book opens inside the same website with a polished detail view.
-          </p>
+          <p>Explore concise book summaries, thoughtful reviews, and easy genre-based browsing in one clean reading experience.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#books">Explore Books</a>
-            <button class="btn btn-secondary" id="openFeaturedBtn" type="button">Open Featured Review</button>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <div class="eyebrow">✨ Platform Highlights</div>
-          <h3 style="margin:0;font-size:1.55rem;line-height:1.4;">Homepage + inside pages now match.</h3>
-          <div class="hero-stat-grid">
-            <div class="stat">
-              <h3>Same UI</h3>
-              <p>Cards open into an internal detailed page instead of redirecting to another layout.</p>
-            </div>
-            <div class="stat">
-              <h3>Search</h3>
-              <p>Find summaries or reviews instantly by title, genre, author, or keyword.</p>
-            </div>
-            <div class="stat">
-              <h3>Categories</h3>
-              <p>Switch through thriller, romance, fantasy, finance, mystery, and self growth tabs.</p>
-            </div>
-            <div class="stat">
-              <h3>Brand Feel</h3>
-              <p>Your site now feels like a real product website, not just a plain blog archive.</p>
-            </div>
+            <button class="btn btn-random" id="openRandomBtn" type="button"><span class="dice-icon">🎲</span> Random Read</button>
           </div>
         </div>
       </div>
@@ -656,8 +691,8 @@
             <p>Every card opens a styled inside page with summary, review, takeaways, and related data.</p>
           </div>
           <div class="mini-card">
-            <h3>Better brand identity</h3>
-            <p>Same colors, same layout language, same polished look across the whole experience.</p>
+            <h3>🎙️ Audio Read-Aloud</h3>
+            <p>Listen to any book's full summary and review read out loud with the built-in audio player.</p>
           </div>
         </div>
       </div>
@@ -701,16 +736,21 @@
     </section>
   </main>
 
+  <!-- Detail Modal -->
   <section class="detail-view" id="detailView" aria-hidden="true">
     <div class="detail-shell">
       <div class="detail-topbar">
         <button class="icon-btn" id="closeDetailBtn" type="button">← Back to home</button>
-        <button class="icon-btn" id="openBlogBtn" type="button">Open original blog</button>
+        <div class="topbar-actions">
+          <button class="audio-btn" id="audioBtn" type="button">🎙️ Read Aloud</button>
+          <button class="icon-btn" id="openBlogBtn" type="button">Open original blog ↗</button>
+        </div>
       </div>
+      <div class="audio-progress"><div class="audio-progress-bar" id="audioProgressBar"></div></div>
       <div class="detail-hero" id="detailHero">
         <div>
           <div class="eyebrow" id="detailGenre">Genre</div>
-          <h1 id="detailTitle" style="margin:0 0 12px;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;"></h1>
+          <h1 id="detailTitle" style="margin:0 0 12px;font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;"></h1>
           <div class="meta" style="font-size:1rem;">
             <span id="detailAuthor"></span>
             <span>•</span>
@@ -746,12 +786,15 @@
         <strong style="display:block;margin-bottom:6px;color:var(--text);">Bookish Inside</strong>
         <span>Quick summaries. Better discovery. Smarter reading.</span>
       </div>
-      <button class="read-btn" id="footerFeaturedBtn" type="button">Open featured inside page ↗</button>
+      <button class="btn btn-random" id="footerRandomBtn" type="button"><span class="dice-icon">🎲</span> Random Read</button>
     </div>
   </footer>
 
+  <div class="toast" id="toast">🎲 Opening a random read for you!</div>
+
   <script>
     const books = [
+      // ── THRILLER (8 books) ──
       {
         title: "The Silent Patient",
         genre: "Thriller",
@@ -769,6 +812,120 @@
         cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80"
       },
       {
+        title: "The Girl with the Dragon Tattoo",
+        genre: "Thriller",
+        author: "Stieg Larsson",
+        readTime: "5 min read",
+        excerpt: "A cold Scandinavian mystery blending investigative journalism, family secrets, and a fierce, unconventional protagonist.",
+        summary: "Journalist Mikael Blomkvist and hacker Lisbeth Salander team up to solve a decades-old disappearance within a wealthy and dysfunctional Swedish family. The investigation uncovers corruption, violence, and buried secrets that span generations.",
+        review: "Larsson's novel is dense but deeply rewarding. Lisbeth Salander is one of fiction's most compelling characters — sharp, broken, and brilliantly resilient. The mystery is layered and the atmosphere is cold and precise. A book that earns its cult status.",
+        why: "Readers may like it for its intricate plot, unforgettable protagonist, and dark Scandinavian atmosphere.",
+        takeaways: ["Complex, layered investigation", "Iconic female lead character", "Dark themes handled with depth"],
+        bestFor: "Readers who enjoy slow-burn crime with richly developed characters.",
+        mood: "Cold, intense, and meticulous.",
+        tags: ["Crime", "Scandinavian", "Investigation"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Big Little Lies",
+        genre: "Thriller",
+        author: "Liane Moriarty",
+        readTime: "4 min read",
+        excerpt: "Three women, one murder, and the secrets hidden behind a picture-perfect seaside community.",
+        summary: "Set in a wealthy Australian coastal town, the story follows three women — Madeline, Celeste, and Jane — whose lives become entangled around the mysteries of a school fundraiser night that ends in murder. The novel unravels domestic secrets, abuse, and the performance of perfection.",
+        review: "Moriarty is a master of combining sharp wit with genuine emotional weight. The structure keeps readers engaged and the themes are handled with care. It is simultaneously a page-turner and a thoughtful exploration of modern relationships and hidden violence.",
+        why: "Readers may like it for its dark humour, strong female characters, and satisfying revelation.",
+        takeaways: ["Layered domestic thriller format", "Dark humour with serious themes", "Three-perspective narrative"],
+        bestFor: "Readers who enjoy character-driven thrillers with sharp social commentary.",
+        mood: "Witty, tense, and emotionally layered.",
+        tags: ["Domestic", "Secrets", "Female-Led"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Woman in the Window",
+        genre: "Thriller",
+        author: "A.J. Finn",
+        readTime: "4 min read",
+        excerpt: "A housebound agoraphobe witnesses something she was not supposed to see — but no one believes her.",
+        summary: "Anna Fox, a child psychologist with agoraphobia, spends her days watching her neighbours from her window. One evening she witnesses something disturbing. When no one believes her account, she begins to question her own memory, sanity, and the reality around her.",
+        review: "A well-constructed thriller with a strong atmosphere of claustrophobia and paranoia. The unreliable narrator device works effectively here, and the pacing is crisp. Best enjoyed as a fast, immersive read rather than a deep literary experience.",
+        why: "Readers may like it for its fast pacing, unreliable narrator, and tense domestic atmosphere.",
+        takeaways: ["Unreliable narrator done well", "Strong claustrophobic atmosphere", "Fast and immersive pacing"],
+        bestFor: "Readers who enjoy Hitchcock-style psychological suspense.",
+        mood: "Claustrophobic, tense, and suspenseful.",
+        tags: ["Paranoia", "Unreliable Narrator", "Suspense"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "In the Woods",
+        genre: "Thriller",
+        author: "Tana French",
+        readTime: "5 min read",
+        excerpt: "A Dublin detective investigates a murder near the same woods where his childhood friends vanished — and only he survived.",
+        summary: "Detective Rob Ryan carries a buried secret — as a child he emerged alone from the woods where his friends disappeared. Years later, a girl is found murdered near those same woods. As he investigates, the case begins to unravel his own past in deeply unsettling ways.",
+        review: "Tana French writes literary crime fiction at its best. The prose is rich, the character psychology is nuanced, and the atmosphere of the Dublin countryside is vivid. Not everything resolves neatly, which makes it feel more true and more haunting than typical thrillers.",
+        why: "Readers may like it for its atmospheric prose, complex protagonist, and literary depth.",
+        takeaways: ["Literary quality crime writing", "Deeply atmospheric setting", "Morally complex protagonist"],
+        bestFor: "Readers who want literary fiction with a thriller structure.",
+        mood: "Atmospheric, melancholic, and haunting.",
+        tags: ["Literary", "Crime", "Atmospheric"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Housemaid",
+        genre: "Thriller",
+        author: "Freida McFadden",
+        readTime: "4 min read",
+        excerpt: "A desperate woman takes a job as a housemaid, only to discover the family's perfect life hides something deeply sinister.",
+        summary: "Millie needs work and a place to stay. She accepts a housemaid position with the wealthy Winchester family. But the wife, Nina, is erratic and unsettling, the husband charming yet evasive, and the locked attic room raises questions Millie cannot ignore. Nothing in this house is what it seems.",
+        review: "A fast-paced, addictive domestic thriller with a genuinely shocking twist. McFadden is excellent at building dread in ordinary settings and the book earns its reputation as a binge-read. The ending reframes everything effectively.",
+        why: "Readers may like it for its twisty plot, fast pacing, and satisfying payoff.",
+        takeaways: ["Gripping twist ending", "Domestic suspense at its sharpest", "Fast-paced binge read"],
+        bestFor: "Readers who want a fast, twisty thriller they can finish in a day.",
+        mood: "Eerie, addictive, and surprising.",
+        tags: ["Domestic", "Twist", "Binge-Worthy"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Thursday Murder Club",
+        genre: "Thriller",
+        author: "Richard Osman",
+        readTime: "4 min read",
+        excerpt: "Four retirees in a quiet English village solve cold cases — until a real murder lands at their doorstep.",
+        summary: "In a leafy retirement community, four friends meet weekly to examine old unsolved murders. When a local property developer is found dead, they find themselves in a real investigation — one that could be as dangerous as it is thrilling.",
+        review: "Charming, witty, and surprisingly sharp. Osman's debut is a love letter to classic English mysteries while being wholly modern in its character writing. The four leads are brilliantly drawn, the humour is warm, and the mystery is satisfying. A joy to read.",
+        why: "Readers may like it for its wit, lovable characters, and cosy yet clever mystery.",
+        takeaways: ["Brilliant cast of older protagonists", "Cosy mystery with real bite", "Sharp humour throughout"],
+        bestFor: "Readers who enjoy cosy crime fiction with clever plotting.",
+        mood: "Warm, witty, and gently thrilling.",
+        tags: ["Cosy", "British", "Witty"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Verity",
+        genre: "Thriller",
+        author: "Colleen Hoover",
+        readTime: "4 min read",
+        excerpt: "A struggling author discovers a disturbing manuscript that could destroy everything — and everyone — she thought she knew.",
+        summary: "Lowen Ashby is hired to complete a bestselling thriller series after its author, Verity Crawford, is incapacitated. While staying at the Crawford home, Lowen discovers an autobiography hidden in Verity's study — a document containing chilling confessions that may or may not be true.",
+        review: "Verity is dark, propulsive, and genuinely unsettling in the best possible way. Hoover leans fully into the thriller genre here and delivers a manuscript-within-a-manuscript structure that keeps the reader constantly questioning what is real. The ending is divisive but the ride is unforgettable.",
+        why: "Readers may like it for its dark tone, unreliable narrative, and obsessive pacing.",
+        takeaways: ["Manuscript-within-novel structure", "Deeply dark and morally complex", "Genuinely unsettling tone"],
+        bestFor: "Readers who want a dark, twisty thriller with romantic elements.",
+        mood: "Dark, obsessive, and disturbing.",
+        tags: ["Dark Romance", "Manuscript", "Twist"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=80"
+      },
+
+      // ── ROMANCE (7 books) ──
+      {
         title: "Pride and Prejudice",
         genre: "Romance",
         author: "Jane Austen",
@@ -785,21 +942,103 @@
         cover: "https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1200&q=80"
       },
       {
-        title: "Atomic Habits",
-        genre: "Self Growth",
-        author: "James Clear",
-        readTime: "5 min read",
-        excerpt: "A practical guide to building good habits, breaking bad ones, and improving daily systems through small consistent actions.",
-        summary: "This book explains how tiny daily improvements can create major long-term results. Instead of focusing only on goals, it emphasizes systems, identity-based habits, and making good actions easier to repeat. It is practical, structured, and easy to apply in real life.",
-        review: "Atomic Habits stands out because it turns self-improvement into something actionable. The framework is simple, the writing is clear, and the examples are useful. It is one of the most accessible books for anyone trying to improve discipline, productivity, or consistency.",
-        why: "Readers may like it because it gives a system they can actually use rather than just motivation.",
-        takeaways: ["Focus on systems over goals", "Small changes compound over time", "Identity shapes habits"],
-        bestFor: "Students, creators, and professionals who want practical personal growth.",
-        mood: "Practical, motivating, and structured.",
-        tags: ["Habits", "Productivity", "Mindset"],
+        title: "The Notebook",
+        genre: "Romance",
+        author: "Nicholas Sparks",
+        readTime: "3 min read",
+        excerpt: "A sweeping love story spanning decades, told through letters and memories that refuse to fade.",
+        summary: "Set in 1940s North Carolina, Noah and Allie fall in love during a summer that feels like forever. Years later, separated by class and circumstances, Noah reads their story from a worn notebook — hoping to revive the memories of the woman he still loves.",
+        review: "Sparks writes with an earnest sentimentality that either moves you deeply or leaves you unmoved. The Notebook is his most enduring work because it earns its emotion through the specificity of its setting and the simplicity of its love story. An honest tearjerker.",
+        why: "Readers may like it for its emotional payoff, timeless love story, and nostalgic warmth.",
+        takeaways: ["Deeply sentimental love story", "Memory and devotion as central themes", "Earned emotional resolution"],
+        bestFor: "Readers who enjoy emotional, classic-feeling romance.",
+        mood: "Nostalgic, tender, and moving.",
+        tags: ["Classic", "Emotional", "Timeless"],
         blogLink: "https://bookishinside.blogspot.com/",
-        cover: "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=1200&q=80"
+        cover: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80"
       },
+      {
+        title: "It Ends with Us",
+        genre: "Romance",
+        author: "Colleen Hoover",
+        readTime: "4 min read",
+        excerpt: "A raw, emotional romance that dares to explore the complicated reality of love and difficult relationships.",
+        summary: "Lily grew up watching her mother endure a painful relationship. Now she is falling for Ryle, a brilliant surgeon, while also rediscovering her first love, Atlas. The novel weaves between romance and a courageous examination of love's complicated and sometimes painful dimensions.",
+        review: "This book is more emotionally ambitious than most romance novels. Hoover handles its difficult themes with genuine care and the emotional honesty is what separates it from the genre's typical output. It is not a comfortable read — which is exactly what makes it meaningful.",
+        why: "Readers may like it for its emotional courage, real portrayal of complex relationships, and deeply felt characters.",
+        takeaways: ["Handles difficult themes with care", "Emotionally honest portrayal of love", "Challenging and meaningful narrative"],
+        bestFor: "Readers who want romance that tackles real, complex emotional territory.",
+        mood: "Emotional, raw, and brave.",
+        tags: ["Emotional", "Complex", "Contemporary"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Hating Game",
+        genre: "Romance",
+        author: "Sally Thorne",
+        readTime: "3 min read",
+        excerpt: "Two office rivals competing for the same promotion discover their hatred might be something else entirely.",
+        summary: "Lucy Hutton and Joshua Templeman share an office, a boss, and a deep mutual dislike. When a new executive position opens, their rivalry intensifies — but so does something they are both reluctant to name. A classic enemies-to-lovers workplace romance.",
+        review: "Genuinely funny, well-paced, and satisfying. Thorne writes banter that crackles and the slow-burn tension is exactly what romance readers love. The characters are distinct and likeable, and the emotional payoff lands cleanly. A thoroughly enjoyable read.",
+        why: "Readers may like it for its sharp banter, slow-burn tension, and satisfying romantic payoff.",
+        takeaways: ["Perfect enemies-to-lovers dynamic", "Sharp, funny dialogue", "Workplace tension done brilliantly"],
+        bestFor: "Readers who love slow-burn romance with excellent banter.",
+        mood: "Fun, witty, and satisfyingly romantic.",
+        tags: ["Enemies-to-Lovers", "Workplace", "Banter"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Beach Read",
+        genre: "Romance",
+        author: "Emily Henry",
+        readTime: "3 min read",
+        excerpt: "Two rival authors with opposite styles swap genres for the summer — and slowly fall for each other.",
+        summary: "January Andrews writes happy romances. Gus Everett writes literary fiction. Stranded as summer neighbours, they make a bet to swap genres. What starts as creative competition becomes an unlikely emotional connection neither expected to find.",
+        review: "Emily Henry is one of the sharpest writers in contemporary romance and Beach Read shows why. The banter is excellent, the emotional depth is real, and the book manages to be both funny and genuinely moving. A warm, smart read that exceeds genre expectations.",
+        why: "Readers may like it for its witty concept, strong emotional depth, and genuinely funny dialogue.",
+        takeaways: ["Clever writer-swap premise", "Smart, witty romantic chemistry", "Emotionally resonant storytelling"],
+        bestFor: "Readers who enjoy contemporary romance with smart, self-aware characters.",
+        mood: "Warm, funny, and emotionally satisfying.",
+        tags: ["Contemporary", "Writers", "Slow Burn"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "People We Meet on Vacation",
+        genre: "Romance",
+        author: "Emily Henry",
+        readTime: "3 min read",
+        excerpt: "Best friends who travel together every summer — until one trip changed everything between them.",
+        summary: "Poppy and Alex are best friends who take a vacation together every summer despite being completely different. Two years after a trip that ruined their friendship, Poppy convinces Alex to try one more vacation. Told in alternating timelines, the story slowly reveals what went wrong — and whether they can fix it.",
+        review: "Henry does alternating timelines better than almost any romance writer working today. The two leads are beautifully developed and the emotional pacing is precise. It is tender, funny, and quietly devastating in the best way. A standout in the genre.",
+        why: "Readers may like it for its emotional warmth, slow-burn tension, and brilliant dual timeline structure.",
+        takeaways: ["Dual timeline structure done expertly", "Deep friendship-to-romance arc", "Emotionally precise and tender"],
+        bestFor: "Readers who enjoy friends-to-lovers romance with real emotional stakes.",
+        mood: "Tender, funny, and bittersweet.",
+        tags: ["Friends-to-Lovers", "Dual Timeline", "Contemporary"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Me Before You",
+        genre: "Romance",
+        author: "Jojo Moyes",
+        readTime: "4 min read",
+        excerpt: "A working-class woman becomes caregiver to a paralysed man — and both of their worlds are changed forever.",
+        summary: "Louisa Clark takes a job caring for Will Traynor, a wealthy, sharp-tongued man left quadriplegic after an accident. What begins as a professional arrangement becomes an unexpected relationship that forces both of them to confront what it means to truly live.",
+        review: "Emotionally honest and deeply human. Moyes does not write a conventional love story — she writes something more complicated and more true. The central relationship is beautifully constructed and the ending is brave and memorable. This is the kind of book that stays with you.",
+        why: "Readers may like it for its complex emotional territory, strong character writing, and courageous ending.",
+        takeaways: ["Complex relationship with real emotional stakes", "Difficult themes handled with care", "Brave, non-conventional ending"],
+        bestFor: "Readers who want romance that explores meaning, disability, and the choice to live fully.",
+        mood: "Emotional, hopeful, and deeply human.",
+        tags: ["Emotional", "Disability", "Life-Changing"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=1200&q=80"
+      },
+
+      // ── FANTASY (8 books) ──
       {
         title: "The Alchemist",
         genre: "Fantasy",
@@ -817,6 +1056,120 @@
         cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=80"
       },
       {
+        title: "The Name of the Wind",
+        genre: "Fantasy",
+        author: "Patrick Rothfuss",
+        readTime: "5 min read",
+        excerpt: "A legendary wizard narrates the true story of his life — and it is nothing like the myths.",
+        summary: "Kvothe, the most legendary figure of his age, now lives in hiding as a quiet innkeeper. A chronicler arrives to record his true story. Over three days, Kvothe narrates his journey from gifted child to feared magician, through poverty, wonder, music, and loss.",
+        review: "One of the most beautifully written fantasy novels of the modern era. Rothfuss has a literary quality to his prose that is rare in the genre. The magic system is elegant, the voice is irresistible, and Kvothe is one of fiction's great unreliable narrators. Essential reading for fantasy lovers.",
+        why: "Readers may like it for its exceptional prose, rich world-building, and compelling narrative voice.",
+        takeaways: ["Exceptional literary prose in fantasy", "Unreliable narrator used brilliantly", "Rich, layered world-building"],
+        bestFor: "Fantasy readers who value writing quality as much as world-building.",
+        mood: "Lyrical, immersive, and deeply engaging.",
+        tags: ["Epic", "Magic", "Literary"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Way of Kings",
+        genre: "Fantasy",
+        author: "Brandon Sanderson",
+        readTime: "6 min read",
+        excerpt: "An epic fantasy of war, magic, and destiny set in a world where storms reshape the very landscape.",
+        summary: "In the world of Roshar, highstorms devastate the land and ancient wars never truly end. Three characters — a surgeon turned slave, a young woman thief, and a scholar — navigate a world on the edge of a catastrophe only they can prevent. The first book of the Stormlight Archive.",
+        review: "Sanderson at the height of his powers. The world-building is extraordinary, the magic system is intricate and satisfying, and the emotional arcs are genuinely moving. It is a long read but every chapter earns its place. Possibly the best epic fantasy of the last twenty years.",
+        why: "Readers may like it for its rich world-building, complex characters, and deeply satisfying magic system.",
+        takeaways: ["Masterclass in epic world-building", "Multiple compelling character arcs", "Intricate, original magic system"],
+        bestFor: "Readers ready for a long, deeply rewarding epic fantasy commitment.",
+        mood: "Epic, immersive, and emotionally grand.",
+        tags: ["Epic", "World-Building", "Magic System"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1518281420975-50db6e5d0a97?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Lies of Locke Lamora",
+        genre: "Fantasy",
+        author: "Scott Lynch",
+        readTime: "5 min read",
+        excerpt: "A crew of brilliant thieves run the longest con in their city's history — until someone plays them.",
+        summary: "In the city of Camorr, where elaborate deceptions are an art form, Locke Lamora and his Gentlemen Bastards have swindled the nobility for years. But a mysterious enemy called the Grey King begins dismantling their world piece by piece, and Locke's greatest tricks may not be enough.",
+        review: "Lynch writes heist fantasy with wit, style, and real emotional stakes. The city of Camorr is brilliantly realised, the characters are deeply likeable, and the plot is endlessly inventive. The book is darkly funny and devastating in equal measure. A modern classic of the genre.",
+        why: "Readers may like it for its wit, intricate heist plotting, and lovable characters.",
+        takeaways: ["Heist fantasy done brilliantly", "Rich, vivid city setting", "Dark humour with emotional depth"],
+        bestFor: "Readers who enjoy morally grey protagonists and clever, layered plots.",
+        mood: "Witty, dark, and inventive.",
+        tags: ["Heist", "Dark Fantasy", "Witty"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Jonathan Strange & Mr Norrell",
+        genre: "Fantasy",
+        author: "Susanna Clarke",
+        readTime: "5 min read",
+        excerpt: "Two very different magicians revive English magic in the Napoleonic era — with unpredictable consequences.",
+        summary: "In an alternate England where magic once flourished, two magicians emerge: the reclusive Mr Norrell and the brilliant Jonathan Strange. Together they restore English magic — but their partnership fractures, and old, darker magic begins to reassert itself in their world.",
+        review: "A remarkable achievement — a Victorian novel written with genuine scholarly wit and an imagination that is wholly original. Clarke builds a world that feels entirely real and the footnotes alone are extraordinary. Slow to start but deeply rewarding for patient readers.",
+        why: "Readers may like it for its originality, elegant prose, and uniquely British atmosphere.",
+        takeaways: ["Wholly original fantasy world", "Footnotes that build a complete mythology", "Victorian in style, modern in imagination"],
+        bestFor: "Readers who want a slower, literary fantasy experience.",
+        mood: "Scholarly, atmospheric, and quietly magical.",
+        tags: ["Historical", "Literary", "British"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Piranesi",
+        genre: "Fantasy",
+        author: "Susanna Clarke",
+        readTime: "3 min read",
+        excerpt: "A man lives alone in a labyrinthine house of infinite halls, tides, and statues — and slowly learns the truth.",
+        summary: "Piranesi lives in a vast House of endless halls, where tides flow through lower floors and clouds drift through the upper ones. He documents his world carefully in journals. A mysterious Other sometimes visits. But slowly, Piranesi begins to remember things that change everything he knows.",
+        review: "A masterpiece of quiet, dreamlike fiction. Clarke creates something utterly unlike anything else — part mystery, part meditation on memory and identity, entirely original. It is short, beautiful, and unforgettable. One of the best novels of the decade.",
+        why: "Readers may like it for its extraordinary originality, beautiful prose, and surprising emotional depth.",
+        takeaways: ["Utterly original concept", "Beautiful, precise prose", "Mystery built through atmosphere not plot"],
+        bestFor: "Readers who want something short, brilliant, and genuinely unlike anything else.",
+        mood: "Dreamlike, quiet, and extraordinary.",
+        tags: ["Surreal", "Mystery", "Unique"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "A Court of Thorns and Roses",
+        genre: "Fantasy",
+        author: "Sarah J. Maas",
+        readTime: "4 min read",
+        excerpt: "A mortal huntress is taken to the magical land of the Fae — and discovers more than she bargained for.",
+        summary: "After killing a wolf in the forest, mortal Feyre is taken to the land of the Fae as punishment. There she begins to understand the faeries, falls for one named Tamlin, and discovers a dark curse threatening both worlds that only she might be able to break.",
+        review: "Maas creates an addictive fae world that pulls readers in completely. The romance is intense, the world-building is vivid, and the plot moves at pace. It is fantasy romance at its most entertaining. The series grows significantly stronger as it continues.",
+        why: "Readers may like it for its romantic tension, vibrant fae world, and addictive pacing.",
+        takeaways: ["Immersive fae mythology", "Intense romantic tension", "Series starter with growing ambition"],
+        bestFor: "Readers who enjoy fantasy with strong romantic elements and fast-paced plotting.",
+        mood: "Intense, romantic, and immersive.",
+        tags: ["Fae", "Romantic Fantasy", "Series"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1518544801976-3e159e50e5bb?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Night Circus",
+        genre: "Fantasy",
+        author: "Erin Morgenstern",
+        readTime: "4 min read",
+        excerpt: "A black-and-white circus appears without warning at night — and within it, two young magicians are bound in a competition that may destroy them both.",
+        summary: "Le Cirque des Rêves arrives unannounced, open only at night, and filled with wonders beyond imagining. Two magicians — Celia and Marco — have been trained since childhood for a competition neither fully understands, but both are bound to until one of them falls.",
+        review: "Gorgeous and atmospheric. Morgenstern prioritises sensation and beauty over conventional plot mechanics, and for many readers that is exactly the point. The circus itself is the real protagonist. A book to be savoured slowly like a dream you want to stay inside.",
+        why: "Readers may like it for its extraordinary atmosphere, beautiful imagery, and romantic fatalism.",
+        takeaways: ["Atmosphere as the primary experience", "Beautifully rendered magical world", "Slow-burn romantic tragedy"],
+        bestFor: "Readers who love atmosphere, beautiful prose, and magical settings over plot.",
+        mood: "Beautiful, dreamlike, and romantic.",
+        tags: ["Atmospheric", "Magic", "Romance"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
+      },
+
+      // ── FINANCE (7 books) ──
+      {
         title: "Rich Dad Poor Dad",
         genre: "Finance",
         author: "Robert T. Kiyosaki",
@@ -833,6 +1186,104 @@
         cover: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80"
       },
       {
+        title: "The Psychology of Money",
+        genre: "Finance",
+        author: "Morgan Housel",
+        readTime: "4 min read",
+        excerpt: "Short, brilliant essays on how human behaviour shapes the way we earn, save, and spend money.",
+        summary: "Housel argues that financial success is less about intelligence and more about behaviour. Through 19 short chapters, he explores greed, fear, luck, risk, and the role of personal history in shaping our financial decisions. Each essay is standalone but builds into a cohesive philosophy.",
+        review: "One of the most readable finance books ever written. Housel has a gift for making behavioural economics feel personal and urgent. Every chapter delivers a clean, actionable insight. This is the book you give someone who thinks they hate reading about money.",
+        why: "Readers may like it for its accessible essays, real-world insight, and behavioural focus.",
+        takeaways: ["Behaviour matters more than intelligence in finance", "Long-term thinking is the ultimate edge", "Wealth is what you do not spend"],
+        bestFor: "Anyone who wants to understand money through a human behavioural lens.",
+        mood: "Clear, wise, and quietly powerful.",
+        tags: ["Behaviour", "Investing", "Mindset"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Intelligent Investor",
+        genre: "Finance",
+        author: "Benjamin Graham",
+        readTime: "5 min read",
+        excerpt: "The foundational text on value investing — timeless principles for those who invest with patience and discipline.",
+        summary: "Benjamin Graham, Warren Buffett's mentor, lays out the principles of value investing: finding companies whose stock price is below their intrinsic value. He differentiates between defensive and enterprising investors and emphasises margin of safety as the cornerstone of investing.",
+        review: "Dense and demanding, but essential. Graham's philosophy has stood the test of decades and the principles remain as valid today as when first written. Updated commentary makes the technical sections accessible. This is not a quick read — it is a foundational text.",
+        why: "Readers may like it for its rigorous thinking, timeless principles, and the foundation it provides for serious investing.",
+        takeaways: ["Value investing core principles", "Margin of safety is essential", "Mr Market metaphor for market psychology"],
+        bestFor: "Serious investors who want foundational, disciplined investment thinking.",
+        mood: "Rigorous, disciplined, and foundational.",
+        tags: ["Investing", "Value", "Classic"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "I Will Teach You to Be Rich",
+        genre: "Finance",
+        author: "Ramit Sethi",
+        readTime: "4 min read",
+        excerpt: "A no-nonsense six-week programme for automating your finances and building real wealth in your 20s and 30s.",
+        summary: "Sethi offers a direct, step-by-step financial system for young adults. From setting up the right bank accounts and automating savings, to investing in index funds and negotiating salary — the book covers practical financial systems in a tone that is refreshingly honest and jargon-free.",
+        review: "One of the most practical personal finance books available. Sethi cuts through the guilt and shame around money and replaces it with clear systems anyone can follow. The automation-first approach is brilliant and the writing is sharp and energetic. Highly recommended for beginners.",
+        why: "Readers may like it for its practical step-by-step approach, honest tone, and automation-first philosophy.",
+        takeaways: ["Automate savings and investments first", "Negotiate salary — it compounds", "Spend guilt-free on things that matter"],
+        bestFor: "Young adults who want practical, no-nonsense financial guidance.",
+        mood: "Direct, energetic, and practical.",
+        tags: ["Personal Finance", "Young Adults", "Practical"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Think and Grow Rich",
+        genre: "Finance",
+        author: "Napoleon Hill",
+        readTime: "4 min read",
+        excerpt: "A classic self-help finance title based on studying the mindsets and habits of the most successful people of the early 20th century.",
+        summary: "After interviewing hundreds of wealthy and successful individuals over 20 years, Napoleon Hill distilled common principles into 13 laws — including desire, faith, specialised knowledge, and persistence. The book argues that a burning desire combined with belief and action creates tangible wealth.",
+        review: "A foundational text in the wealth mindset genre that influenced decades of self-help writing. Its ideas are more philosophical than technical, and some concepts feel dated. But its core message about intentionality and belief as prerequisites for financial success remains relevant and widely cited.",
+        why: "Readers may like it for its historical significance, motivational framework, and foundational principles.",
+        takeaways: ["Desire and belief precede achievement", "Mastermind groups multiply capability", "Persistence is the most undervalued trait"],
+        bestFor: "Readers interested in the mindset and motivational side of wealth building.",
+        mood: "Motivational, philosophical, and aspirational.",
+        tags: ["Mindset", "Wealth", "Classic"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Millionaire Next Door",
+        genre: "Finance",
+        author: "Thomas J. Stanley",
+        readTime: "4 min read",
+        excerpt: "A research-based portrait of actual millionaires that defies almost every popular assumption about wealth.",
+        summary: "Based on extensive surveys and interviews, Stanley reveals that most American millionaires live modestly, drive ordinary cars, and prioritise frugality and consistency over luxury and displays of wealth. True wealth is often invisible — accumulated quietly, not spent conspicuously.",
+        review: "Genuinely surprising and valuable. The data-driven approach makes this different from most finance books. The central finding — that wealth is built quietly and incrementally, not dramatically — is both counter-intuitive and liberating. A book that changes how you measure success.",
+        why: "Readers may like it for its research-based insights, surprising findings, and counter-cultural perspective on wealth.",
+        takeaways: ["Most millionaires live below their means", "Wealth is not the same as income", "Frugality and consistency build lasting wealth"],
+        bestFor: "Readers who want a research-backed, realistic picture of how wealth is actually built.",
+        mood: "Grounded, surprising, and liberating.",
+        tags: ["Research", "Frugality", "Wealth"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Die with Zero",
+        genre: "Finance",
+        author: "Bill Perkins",
+        readTime: "4 min read",
+        excerpt: "A radical argument that the goal should not be maximum savings — but maximum life experience before you die.",
+        summary: "Perkins challenges the conventional wisdom of saving as much as possible. He argues that dying with significant wealth means you delayed too many experiences. The book makes a case for spending optimally at the right life stages, timing experiences when you can enjoy them most, and giving away money while alive.",
+        review: "A genuinely contrarian finance book that forces real reflection. Not everyone will agree with all of Perkins's arguments, but the core question — are you trading time for money you will never use? — is uncomfortable and important. A perspective-shifting read that complements traditional finance books well.",
+        why: "Readers may like it for its contrarian perspective, life-stage thinking, and philosophical challenge to conventional saving wisdom.",
+        takeaways: ["Optimise for life experiences, not wealth accumulation", "Time and health determine the value of money", "Give money away while you can enjoy the impact"],
+        bestFor: "Readers who want to reconsider the relationship between money, time, and life.",
+        mood: "Contrarian, reflective, and life-affirming.",
+        tags: ["Life", "Spending", "Contrarian"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
+      },
+
+      // ── MYSTERY (7 books) ──
+      {
         title: "Gone Girl",
         genre: "Mystery",
         author: "Gillian Flynn",
@@ -847,9 +1298,220 @@
         tags: ["Twist", "Crime", "Psychology"],
         blogLink: "https://bookishinside.blogspot.com/",
         cover: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "And Then There Were None",
+        genre: "Mystery",
+        author: "Agatha Christie",
+        readTime: "3 min read",
+        excerpt: "Ten strangers are lured to a remote island — and begin dying one by one.",
+        summary: "Ten strangers with hidden pasts are invited to an isolated island where a mysterious host accuses each of past crimes. Then they start dying, one by one, following the pattern of an old nursery rhyme. With no way off the island and no suspects beyond themselves, the mystery tightens.",
+        review: "The best-selling mystery novel in history, and deservedly so. Christie constructs a near-perfect puzzle here — sealed room, limited cast, rising dread, and a solution that genuinely surprises. Even knowing the premise, the tension remains intact. A masterwork of the genre.",
+        why: "Readers may like it for its perfect mystery construction, rising tension, and iconic twist.",
+        takeaways: ["The gold standard of closed-room mystery", "Rising tension built masterfully", "Surprise resolution that earns its shock"],
+        bestFor: "Readers who want the ultimate classic mystery experience.",
+        mood: "Tense, clever, and perfectly constructed.",
+        tags: ["Classic", "Closed Room", "Christie"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Seven Husbands of Evelyn Hugo",
+        genre: "Mystery",
+        author: "Taylor Jenkins Reid",
+        readTime: "4 min read",
+        excerpt: "A reclusive Hollywood icon finally agrees to tell her full story — but why she chose this particular journalist is the mystery.",
+        summary: "Ageing film star Evelyn Hugo grants an exclusive interview to an unknown journalist, Monique, rather than any major publication. As Evelyn unravels the story of her seven marriages and the loves and secrets behind them, Monique begins to wonder why she was chosen — and the answer changes everything.",
+        review: "Compulsively readable, emotionally generous, and deeply romantic. Reid creates a character in Evelyn Hugo who feels genuinely legendary. The mystery of why Monique was chosen binds the entire narrative perfectly and the emotional payoff is completely earned.",
+        why: "Readers may like it for its glamorous setting, deeply human characters, and emotionally satisfying mystery.",
+        takeaways: ["Character study at its finest", "Hollywood glamour with real emotional depth", "Mystery built through intimacy"],
+        bestFor: "Readers who enjoy character-driven mystery with romance and emotional depth.",
+        mood: "Glamorous, intimate, and emotionally resonant.",
+        tags: ["Hollywood", "Romantic", "Character Study"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Girl on the Train",
+        genre: "Mystery",
+        author: "Paula Hawkins",
+        readTime: "4 min read",
+        excerpt: "A woman who watches a couple from her commuter train window witnesses something that pulls her into a real investigation.",
+        summary: "Rachel takes the same commuter train every day and fantasises about the perfect couple she sees from the window. Then the woman disappears. Rachel, unreliable and struggling with memory gaps, becomes entangled in the investigation — and may know more than she realises.",
+        review: "Effective domestic noir that builds well on the unreliable narrator tradition. Not as layered as Gone Girl but compulsively readable and tightly constructed. The twists land, the claustrophobic atmosphere works, and the pace never drops. A solid genre entry.",
+        why: "Readers may like it for its fast pace, unreliable narration, and satisfying mystery resolution.",
+        takeaways: ["Well-executed unreliable narrator", "Domestic noir atmosphere", "Tightly paced mystery"],
+        bestFor: "Readers who enjoyed Gone Girl and want a similarly constructed domestic mystery.",
+        mood: "Tense, claustrophobic, and fast-paced.",
+        tags: ["Domestic", "Unreliable Narrator", "Noir"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Sharp Objects",
+        genre: "Mystery",
+        author: "Gillian Flynn",
+        readTime: "4 min read",
+        excerpt: "A journalist returns to her troubled hometown to cover a murder — and uncovers her own buried trauma.",
+        summary: "Crime reporter Camille Preaker is sent to her hometown of Wind Gap to cover the murder of two young girls. As she investigates, she finds herself drawn back into a destructive past and a complicated relationship with her disturbing mother. The town's secrets and her own begin to surface simultaneously.",
+        review: "Flynn's debut is darker and more personal than Gone Girl. The prose is sharp, the setting is vivid and unsettling, and the psychological portrait of Camille is deeply uncomfortable in the best way. A dark, character-first mystery that rewards patient readers.",
+        why: "Readers may like it for its dark psychology, Southern Gothic atmosphere, and intense character focus.",
+        takeaways: ["Southern Gothic atmosphere done brilliantly", "Character psychology as the mystery", "Dark, uncomfortable, and honest"],
+        bestFor: "Readers who want dark, psychologically intense mystery fiction.",
+        mood: "Dark, Southern Gothic, and psychologically intense.",
+        tags: ["Southern Gothic", "Dark", "Psychological"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Rebecca",
+        genre: "Mystery",
+        author: "Daphne du Maurier",
+        readTime: "4 min read",
+        excerpt: "A young bride arrives at her new husband's grand estate and finds herself haunted by the shadow of his first wife.",
+        summary: "A shy young woman marries the wealthy and enigmatic Maxim de Winter and moves to his Cornish manor, Manderley. But the memory of his first wife Rebecca dominates every room, every servant, and every silence — and the housekeeper Mrs Danvers ensures the new bride never forgets.",
+        review: "One of the greatest English novels of the 20th century. Du Maurier creates an atmosphere of Gothic dread that is near-impossible to shake. The narrator's voice is perfect — insecure, observant, sympathetic — and the revelation is one of the best in literary fiction. Essential reading.",
+        why: "Readers may like it for its perfect Gothic atmosphere, brilliant unreliable narrator, and unforgettable setting.",
+        takeaways: ["Gothic atmosphere as literature", "The absent character as the most powerful presence", "Dread built from domestic detail"],
+        bestFor: "Readers who enjoy literary Gothic fiction with mystery and psychological depth.",
+        mood: "Gothic, atmospheric, and haunting.",
+        tags: ["Gothic", "Classic", "Atmospheric"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1551009175-8a68da93d5f9?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "One of Us Is Lying",
+        genre: "Mystery",
+        author: "Karen M. McManus",
+        readTime: "3 min read",
+        excerpt: "Five students enter detention. One dies. Each of the other four had a reason to want him gone.",
+        summary: "Four students go into detention with Simon Kelleher, the creator of their school's notorious gossip app. Simon dies during detention of an allergic reaction and each of the four survivors becomes a suspect — all of them hiding secrets Simon was about to expose.",
+        review: "A clever YA mystery that uses the familiar high school setting to build real tension. The four-perspective structure works well and each character is distinct. The reveals are satisfying and the book is a fast, engaging read that makes the most of its Breakfast Club-style setup.",
+        why: "Readers may like it for its fast pace, multiple perspectives, and clever high school mystery format.",
+        takeaways: ["Four-narrator perspective done effectively", "Classic mystery format in a modern YA setting", "Fast pacing with satisfying revelations"],
+        bestFor: "YA readers and mystery fans who enjoy character-focused whodunit plots.",
+        mood: "Tense, fun, and fast-paced.",
+        tags: ["YA", "Whodunit", "High School"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80"
+      },
+
+      // ── SELF GROWTH (7 books) ──
+      {
+        title: "Atomic Habits",
+        genre: "Self Growth",
+        author: "James Clear",
+        readTime: "5 min read",
+        excerpt: "A practical guide to building good habits, breaking bad ones, and improving daily systems through small consistent actions.",
+        summary: "This book explains how tiny daily improvements can create major long-term results. Instead of focusing only on goals, it emphasises systems, identity-based habits, and making good actions easier to repeat. It is practical, structured, and easy to apply in real life.",
+        review: "Atomic Habits stands out because it turns self-improvement into something actionable. The framework is simple, the writing is clear, and the examples are useful. It is one of the most accessible books for anyone trying to improve discipline, productivity, or consistency.",
+        why: "Readers may like it because it gives a system they can actually use rather than just motivation.",
+        takeaways: ["Focus on systems over goals", "Small changes compound over time", "Identity shapes habits"],
+        bestFor: "Students, creators, and professionals who want practical personal growth.",
+        mood: "Practical, motivating, and structured.",
+        tags: ["Habits", "Productivity", "Mindset"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Can't Hurt Me",
+        genre: "Self Growth",
+        author: "David Goggins",
+        readTime: "5 min read",
+        excerpt: "A brutal, honest account of one man's transformation from a traumatic childhood to becoming one of history's greatest endurance athletes.",
+        summary: "David Goggins grew up in poverty and abuse, weighed 300 pounds, and struggled deeply. Through extraordinary mental discipline he became a Navy SEAL, an ultramarathon runner, and a world record holder. The book is equal parts memoir and mental training manual.",
+        review: "Raw, uncomfortable, and genuinely transformative for many readers. Goggins does not offer comfort — he offers confrontation. The callousing the mind concept and the 40% rule are powerful frameworks. Not everyone will connect with his extreme approach, but those who do find it life-changing.",
+        why: "Readers may like it for its extreme honesty, mental toughness framework, and genuinely inspiring transformation.",
+        takeaways: ["The 40% rule — you have more left", "Callousing the mind through discomfort", "Accountability mirror for self-awareness"],
+        bestFor: "Readers who want extreme mental toughness and an unflinching look at human potential.",
+        mood: "Intense, raw, and deeply motivating.",
+        tags: ["Mental Toughness", "Memoir", "Discipline"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Power of Now",
+        genre: "Self Growth",
+        author: "Eckhart Tolle",
+        readTime: "4 min read",
+        excerpt: "A spiritual guide to releasing the pain of the past and anxiety of the future by living fully in the present.",
+        summary: "Tolle argues that the greatest source of human suffering is identification with the thinking mind — specifically its attachment to past regrets and future fears. By learning to inhabit the present moment fully, he argues, one can find a natural state of peace and aliveness.",
+        review: "Deeply influential and genuinely illuminating for readers open to its spiritual framework. Tolle writes with remarkable clarity about complex ideas. Some sections become repetitive, but the core insight — that presence is freedom — resonates far beyond the book's spiritual audience.",
+        why: "Readers may like it for its profound insight, accessible spiritual language, and genuine shift in perspective.",
+        takeaways: ["The ego is the source of most suffering", "Pain body concept for emotional patterns", "Presence is the foundation of peace"],
+        bestFor: "Readers interested in mindfulness, spirituality, and inner freedom.",
+        mood: "Calm, profound, and spacious.",
+        tags: ["Mindfulness", "Spiritual", "Presence"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Man's Search for Meaning",
+        genre: "Self Growth",
+        author: "Viktor E. Frankl",
+        readTime: "4 min read",
+        excerpt: "A psychiatrist's account of surviving the Holocaust — and the psychology of meaning he developed as a result.",
+        summary: "Viktor Frankl survived four concentration camps, including Auschwitz. In this book he combines memoir with the principles of logotherapy — his psychological theory that the primary human drive is not pleasure but the search for meaning. The book shows how meaning can be found even in extreme suffering.",
+        review: "One of the most important books ever written. Frankl's experiences give his philosophy a weight and authenticity that no theory could achieve alone. The writing is lucid, the insights are profound, and the book's central message — that meaning is always available to us — is transformative.",
+        why: "Readers may like it for its profound truth, historical weight, and life-changing framework for meaning.",
+        takeaways: ["Meaning can be found in any circumstance", "Suffering ceases to be suffering when given meaning", "Freedom is choosing your response to conditions"],
+        bestFor: "Anyone seeking depth, meaning, and an honest account of human resilience.",
+        mood: "Profound, honest, and deeply moving.",
+        tags: ["Meaning", "Philosophy", "Resilience"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1509909756405-be0199881695?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "The Subtle Art of Not Giving a F*ck",
+        genre: "Self Growth",
+        author: "Mark Manson",
+        readTime: "4 min read",
+        excerpt: "A counterintuitive guide to living a good life by caring less about more things and caring more about fewer things.",
+        summary: "Manson challenges the relentlessly positive self-help tradition. He argues that life inevitably involves pain and struggle, and the key question is not how to avoid suffering but which struggles are worth having. By choosing what you care about carefully, you reclaim focus and purpose.",
+        review: "Refreshing, honest, and often genuinely funny. Manson writes with a directness that cuts through the motivational fluff of most self-help books. The ideas are not entirely original but the framing is sharp and the delivery is engaging. A very good entry point for people who distrust the genre.",
+        why: "Readers may like it for its honest, anti-hype approach and sharp, irreverent writing.",
+        takeaways: ["Choose your struggles wisely", "Values determine wellbeing more than comfort", "Embrace the uncertainty of who you are"],
+        bestFor: "Readers who are sceptical of traditional self-help but want practical perspective shifts.",
+        mood: "Irreverent, honest, and sharp.",
+        tags: ["Anti-Hype", "Values", "Mindset"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1519682577862-22b62b24e493?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Deep Work",
+        genre: "Self Growth",
+        author: "Cal Newport",
+        readTime: "4 min read",
+        excerpt: "A compelling case for why focused, distraction-free work is the most valuable skill in the modern economy.",
+        summary: "Newport argues that the ability to focus without distraction on cognitively demanding tasks is becoming rare and increasingly valuable. He defines deep work, explains why shallow distracted work is eroding productivity, and provides concrete strategies for training concentration.",
+        review: "One of the most genuinely useful books on productivity published in the last decade. Newport's argument is tight and his practical strategies are concrete. The book is slightly repetitive but its core message — that depth of focus is a superpower — is both convincing and actionable.",
+        why: "Readers may like it for its rigorous argument, concrete strategies, and relevance to modern distracted working life.",
+        takeaways: ["Deep focus is a skill that must be trained", "Shallow work crowds out deep work by default", "Schedule depth intentionally or it will not happen"],
+        bestFor: "Professionals, students, and creators who want to improve the quality and depth of their work.",
+        mood: "Focused, practical, and motivating.",
+        tags: ["Focus", "Productivity", "Work"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Mindset",
+        genre: "Self Growth",
+        author: "Carol S. Dweck",
+        readTime: "4 min read",
+        excerpt: "A Stanford psychologist's research on fixed vs growth mindsets and how they shape achievement across every area of life.",
+        summary: "Dweck's research shows that people broadly fall into two mindsets: fixed (believing abilities are innate and static) or growth (believing abilities can be developed through effort). She examines how these mindsets play out in education, sports, business, and relationships — and how to shift toward growth.",
+        review: "Genuinely research-backed and one of the most influential ideas in modern education and psychology. The writing is clear and accessible, the evidence is compelling, and the framework is immediately applicable. The later chapters on parenting and coaching are particularly valuable.",
+        why: "Readers may like it for its research foundation, practical applications, and genuinely life-changing framework.",
+        takeaways: ["Fixed vs growth mindset shapes every outcome", "Effort, not talent, predicts development", "Praise process, not intelligence"],
+        bestFor: "Educators, parents, coaches, and anyone interested in how beliefs shape achievement.",
+        mood: "Clear, insightful, and empowering.",
+        tags: ["Psychology", "Growth", "Education"],
+        blogLink: "https://bookishinside.blogspot.com/",
+        cover: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"
       }
     ];
 
+    // ── DOM refs ──
     const bookGrid = document.getElementById('bookGrid');
     const searchInput = document.getElementById('searchInput');
     const genreSelect = document.getElementById('genreSelect');
@@ -858,9 +1520,12 @@
     const detailView = document.getElementById('detailView');
     const closeDetailBtn = document.getElementById('closeDetailBtn');
     const openBlogBtn = document.getElementById('openBlogBtn');
-    const openFeaturedBtn = document.getElementById('openFeaturedBtn');
-    const navFeaturedBtn = document.getElementById('navFeaturedBtn');
-    const footerFeaturedBtn = document.getElementById('footerFeaturedBtn');
+    const openRandomBtn = document.getElementById('openRandomBtn');
+    const navRandomBtn = document.getElementById('navRandomBtn');
+    const footerRandomBtn = document.getElementById('footerRandomBtn');
+    const audioBtn = document.getElementById('audioBtn');
+    const audioProgressBar = document.getElementById('audioProgressBar');
+    const toast = document.getElementById('toast');
 
     const detailHero = document.getElementById('detailHero');
     const detailGenre = document.getElementById('detailGenre');
@@ -878,6 +1543,84 @@
     let activeGenre = 'all';
     let currentBook = books[0];
 
+    // ── Audio state ──
+    let synth = window.speechSynthesis;
+    let utterance = null;
+    let isPlaying = false;
+    let progressInterval = null;
+    let audioStartTime = 0;
+    let audioDuration = 0;
+
+    function getAudioText(book) {
+      return `${book.title}, by ${book.author}. ${book.genre}. Summary: ${book.summary} Review: ${book.review} Why readers may like it: ${book.why} Best for: ${book.bestFor}`;
+    }
+
+    function stopAudio() {
+      synth.cancel();
+      isPlaying = false;
+      clearInterval(progressInterval);
+      audioProgressBar.style.width = '0%';
+      audioBtn.classList.remove('playing');
+      audioBtn.innerHTML = '🎙️ Read Aloud';
+    }
+
+    function startAudio(book) {
+      stopAudio();
+      const text = getAudioText(book);
+      utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.92;
+      utterance.pitch = 1;
+      utterance.lang = 'en-US';
+
+      // Estimate duration: ~145 words per minute at rate 0.92
+      const wordCount = text.split(/\s+/).length;
+      audioDuration = (wordCount / (145 * 0.92)) * 60 * 1000;
+      audioStartTime = Date.now();
+
+      utterance.onstart = () => {
+        isPlaying = true;
+        audioBtn.classList.add('playing');
+        audioBtn.innerHTML = '⏹ Stop Reading';
+        progressInterval = setInterval(() => {
+          const elapsed = Date.now() - audioStartTime;
+          const pct = Math.min((elapsed / audioDuration) * 100, 98);
+          audioProgressBar.style.width = pct + '%';
+        }, 300);
+      };
+
+      utterance.onend = () => {
+        stopAudio();
+        audioProgressBar.style.width = '100%';
+        setTimeout(() => { audioProgressBar.style.width = '0%'; }, 1200);
+      };
+
+      utterance.onerror = () => stopAudio();
+
+      synth.speak(utterance);
+    }
+
+    audioBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        stopAudio();
+      } else {
+        startAudio(currentBook);
+      }
+    });
+
+    // ── Toast ──
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    // ── Random Read ──
+    function openRandom() {
+      const idx = Math.floor(Math.random() * books.length);
+      showToast();
+      setTimeout(() => openDetail(idx), 300);
+    }
+
+    // ── Book grid ──
     function createCard(book, index) {
       return `
         <article class="card" data-genre="${book.genre}">
@@ -906,15 +1649,13 @@
 
     function renderBooks() {
       const query = searchInput.value.toLowerCase().trim();
-
       const filtered = books.filter(book => {
         const matchesGenre = activeGenre === 'all' || book.genre === activeGenre;
         const haystack = `${book.title} ${book.genre} ${book.author} ${book.excerpt} ${book.tags.join(' ')} ${book.summary} ${book.review}`.toLowerCase();
-        const matchesSearch = haystack.includes(query);
-        return matchesGenre && matchesSearch;
+        return matchesGenre && haystack.includes(query);
       });
 
-      bookGrid.innerHTML = filtered.map((book, index) => {
+      bookGrid.innerHTML = filtered.map((book) => {
         const originalIndex = books.findIndex(item => item.title === book.title && item.author === book.author);
         return createCard(book, originalIndex);
       }).join('');
@@ -923,6 +1664,7 @@
 
     function fillDetail(book) {
       currentBook = book;
+      stopAudio();
       detailHero.style.backgroundImage = `url('${book.cover}')`;
       detailGenre.textContent = book.genre;
       detailTitle.textContent = book.title;
@@ -942,10 +1684,11 @@
       detailView.classList.add('open');
       detailView.setAttribute('aria-hidden', 'false');
       document.body.classList.add('locked');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      detailView.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function closeDetail() {
+      stopAudio();
       detailView.classList.remove('open');
       detailView.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('locked');
@@ -972,22 +1715,16 @@
     });
 
     closeDetailBtn.addEventListener('click', closeDetail);
-    detailView.addEventListener('click', (e) => {
-      if (e.target === detailView) closeDetail();
-    });
+    detailView.addEventListener('click', (e) => { if (e.target === detailView) closeDetail(); });
 
-    openBlogBtn.addEventListener('click', () => {
-      window.open(currentBook.blogLink, '_blank');
-    });
+    openBlogBtn.addEventListener('click', () => { window.open(currentBook.blogLink, '_blank'); });
 
-    openFeaturedBtn.addEventListener('click', () => openDetail(0));
-    navFeaturedBtn.addEventListener('click', () => openDetail(0));
-    footerFeaturedBtn.addEventListener('click', () => openDetail(0));
+    openRandomBtn.addEventListener('click', openRandom);
+    navRandomBtn.addEventListener('click', openRandom);
+    footerRandomBtn.addEventListener('click', openRandom);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && detailView.classList.contains('open')) {
-        closeDetail();
-      }
+      if (e.key === 'Escape' && detailView.classList.contains('open')) closeDetail();
     });
 
     renderBooks();
