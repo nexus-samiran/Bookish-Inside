@@ -113,17 +113,13 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 16px 0;
+      padding: 12px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-family: 'Playfair Display', serif;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-      font-size: 1.15rem;
     }
 
     .brand-badge {
@@ -135,6 +131,28 @@
       place-items: center;
       box-shadow: var(--shadow);
       font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    .brand-byline {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.01em;
     }
 
     .nav-links {
@@ -484,7 +502,7 @@
       background: rgba(255,255,255,0.04);
     }
 
-    /* ── Detail View ── */
+    /* Detail View */
     .detail-view {
       position: fixed;
       inset: 0;
@@ -563,7 +581,6 @@
 
     .icon-btn:hover { background: rgba(255,255,255,0.13); }
 
-    /* Audio button states */
     .audio-btn {
       display: flex;
       align-items: center;
@@ -639,7 +656,7 @@
       margin: 16px 0 0;
     }
 
-    /* ── Random Read Toast ── */
+    /* Random Read Toast */
     .toast {
       position: fixed;
       bottom: 28px;
@@ -702,7 +719,10 @@
     <div class="container nav-wrap">
       <a href="#top" class="brand">
         <div class="brand-badge glow-hover">📚</div>
-        <div>Bookish Inside</div>
+        <div class="brand-text">
+          <div class="brand-name">Bookish Inside</div>
+          <div class="brand-byline">An exclusive website by Samiran Pande.</div>
+        </div>
       </a>
       <nav class="nav-links">
         <a href="#books">Browse</a>
@@ -977,7 +997,6 @@
         blogLink: "https://bookishinside.blogspot.com/",
         cover: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=80"
       },
-
       // ── ROMANCE (7 books) ──
       {
         title: "Pride and Prejudice",
@@ -1091,7 +1110,6 @@
         blogLink: "https://bookishinside.blogspot.com/",
         cover: "https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=1200&q=80"
       },
-
       // ── FANTASY (8 books) ──
       {
         title: "The Alchemist",
@@ -1221,7 +1239,6 @@
         blogLink: "https://bookishinside.blogspot.com/",
         cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
       },
-
       // ── FINANCE (7 books) ──
       {
         title: "Rich Dad Poor Dad",
@@ -1335,7 +1352,6 @@
         blogLink: "https://bookishinside.blogspot.com/",
         cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
       },
-
       // ── MYSTERY (7 books) ──
       {
         title: "Gone Girl",
@@ -1449,7 +1465,6 @@
         blogLink: "https://bookishinside.blogspot.com/",
         cover: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80"
       },
-
       // ── SELF GROWTH (7 books) ──
       {
         title: "Atomic Habits",
@@ -1565,7 +1580,6 @@
       }
     ];
 
-    // ── DOM refs ──
     const bookGrid = document.getElementById('bookGrid');
     const searchInput = document.getElementById('searchInput');
     const genreSelect = document.getElementById('genreSelect');
@@ -1597,7 +1611,6 @@
     let activeGenre = 'all';
     let currentBook = books[0];
 
-    // ── Audio state ──
     let synth = window.speechSynthesis;
     let utterance = null;
     let isPlaying = false;
@@ -1625,12 +1638,9 @@
       utterance.rate = 0.92;
       utterance.pitch = 1;
       utterance.lang = 'en-US';
-
-      // Estimate duration: ~145 words per minute at rate 0.92
       const wordCount = text.split(/\s+/).length;
       audioDuration = (wordCount / (145 * 0.92)) * 60 * 1000;
       audioStartTime = Date.now();
-
       utterance.onstart = () => {
         isPlaying = true;
         audioBtn.classList.add('playing');
@@ -1641,40 +1651,30 @@
           audioProgressBar.style.width = pct + '%';
         }, 300);
       };
-
       utterance.onend = () => {
         stopAudio();
         audioProgressBar.style.width = '100%';
         setTimeout(() => { audioProgressBar.style.width = '0%'; }, 1200);
       };
-
       utterance.onerror = () => stopAudio();
-
       synth.speak(utterance);
     }
 
     audioBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        stopAudio();
-      } else {
-        startAudio(currentBook);
-      }
+      if (isPlaying) { stopAudio(); } else { startAudio(currentBook); }
     });
 
-    // ── Toast ──
     function showToast() {
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    // ── Random Read ──
     function openRandom() {
       const idx = Math.floor(Math.random() * books.length);
       showToast();
       setTimeout(() => openDetail(idx), 300);
     }
 
-    // ── Book grid ──
     function createCard(book, index) {
       return `
         <article class="card" data-genre="${book.genre}">
@@ -1701,14 +1701,11 @@
       `;
     }
 
-
     function bindGlowEffects() {
       const glowTargets = document.querySelectorAll('.glow-hover');
-
       glowTargets.forEach((element) => {
         if (element.dataset.glowBound === 'true') return;
         element.dataset.glowBound = 'true';
-
         element.addEventListener('mousemove', (e) => {
           const rect = element.getBoundingClientRect();
           const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -1717,11 +1714,7 @@
           element.style.setProperty('--my', `${y}%`);
           element.classList.add('is-glowing');
         });
-
-        element.addEventListener('mouseenter', () => {
-          element.classList.add('is-glowing');
-        });
-
+        element.addEventListener('mouseenter', () => { element.classList.add('is-glowing'); });
         element.addEventListener('mouseleave', () => {
           element.classList.remove('is-glowing');
           element.style.setProperty('--mx', '50%');
@@ -1730,7 +1723,6 @@
       });
     }
 
-
     function renderBooks() {
       const query = searchInput.value.toLowerCase().trim();
       const filtered = books.filter(book => {
@@ -1738,7 +1730,6 @@
         const haystack = `${book.title} ${book.genre} ${book.author} ${book.excerpt} ${book.tags.join(' ')} ${book.summary} ${book.review}`.toLowerCase();
         return matchesGenre && haystack.includes(query);
       });
-
       bookGrid.innerHTML = filtered.map((book) => {
         const originalIndex = books.findIndex(item => item.title === book.title && item.author === book.author);
         return createCard(book, originalIndex);
@@ -1782,13 +1773,11 @@
     window.openDetail = openDetail;
 
     searchInput.addEventListener('input', renderBooks);
-
     genreSelect.addEventListener('change', (e) => {
       activeGenre = e.target.value;
       chips.forEach(chip => chip.classList.toggle('active', chip.dataset.genre === activeGenre));
       renderBooks();
     });
-
     chips.forEach(chip => {
       chip.addEventListener('click', () => {
         activeGenre = chip.dataset.genre;
@@ -1798,16 +1787,12 @@
         renderBooks();
       });
     });
-
     closeDetailBtn.addEventListener('click', closeDetail);
     detailView.addEventListener('click', (e) => { if (e.target === detailView) closeDetail(); });
-
     openBlogBtn.addEventListener('click', () => { window.open(currentBook.blogLink, '_blank'); });
-
     openRandomBtn.addEventListener('click', openRandom);
     navRandomBtn.addEventListener('click', openRandom);
     footerRandomBtn.addEventListener('click', openRandom);
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && detailView.classList.contains('open')) closeDetail();
     });
